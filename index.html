@@ -2,26 +2,35 @@
 
 <html>
     <head>
-	<style>
 		<script>
-			const save=function(){
-			
+			const btnsave=document.getElementById("btnSave");
+			const addmessageboard=document.getElementById("addmessageboard");
+			const showmessageboard=document.getElementById("showmessageboard");	
+			debugger;		
+			/*function save()
+			{
+				document.getElementById("showmessageboard")=document.getElementById("addmessageboard");
+			}*/
+			btnsave.onclick=function(){
+				showmessageboard=addmessageboard;
 			}
 		</script>
+	<style>
 	</style>
     </head>
+
 	<body>
-		<h1>―d¨¥ªO</h1>
+		<h1>η•™θ¨€ζΏ</h1>
 		<div>
-			<p>―d¨¥°Ο</p>
-			<textarea class="addmessageboard" style="width:300px;height:100px;"></textarea>
+			<p>η•™θ¨€ε€</p>
+			<textarea id="addmessageboard" style="width:300px;height:100px;"></textarea>
 			<div>
-				<input id="btnSave" type="button" value="ΐx¦s">
+				<input id="btnSave" type="button" value="ε„²ε­">
 			</div>
 		</div>
 		<div>
-			<p>Εγ¥ά―d¨¥</p>
-			<textarea class="showmessageboard" style="width:300px;height:100px;"  readonly="readonly"></textarea>
+			<p>ι΅―η¤Ίη•™θ¨€</p>
+			<textarea id="showmessageboard" style="width:300px;height:100px;"  readonly="readonly"></textarea>
 		</div>
     </body>
 </html>
