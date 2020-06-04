@@ -17,20 +17,53 @@
 		<div>
 			<p>顯示留言</p>
 			<textarea id="showmessageboard" style="width:300px;height:100px;"  readonly="readonly"></textarea>
+			<div>
+				<input id="Delete" type="button" value="刪除">
+				<label>第</label>
+				<input id="fre" type="text" style="width:30px;height:10px;">
+				<label>段留言</label>
+			</div>
 		</div>
 	</body>
 	<script>
+		const showmessage=[];
+		const fre=document.getElementById("fre");
+
 		function save()
 		{
 			const addmessageboard=document.getElementById("addmessageboard");
 			const showmessageboard=document.getElementById("showmessageboard");
-			if(showmessageboard.value!=""){
-				showmessageboard.value+="\n";
-			}
-			showmessageboard.value+=addmessageboard.value;
+			/*showmessageboard.value+=addmessageboard.value;*/
+			showmessage.push(addmessageboard.value);
+			showselect();
 			addmessageboard.value="";
 		}
+		function del()
+		{
+			if(showmessage.length==0)
+			{
+			return;	
+			}
+			if(fre.value=="")
+			{
+				showmessage.splice(0,showmessage.length);
+			}else
+			{
+			showmessage.splice(fre.value-1,1);
+			}
+			showselect();
+		}
+		function showselect()
+		{
+			showmessageboard.value="";
+			for(i=0;i<showmessage.length;i++)
+			{
+				showmessageboard.value+=showmessage[i]+"\n";
+			}
+			fre.value=showmessage.length;
+		}
 		document.getElementById("Save").addEventListener('click',save);
+		document.getElementById("Delete").addEventListener('click',del);
 		debugger;		
 	</script>
 
