@@ -1,6 +1,9 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/4 晚上10:50
+輸入留言不蓋掉原本的留言
+
 6/4 晚上7:30
 發現如果使用addEventListener的話，應該用document去判斷
 不應該

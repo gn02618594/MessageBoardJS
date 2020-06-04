@@ -24,7 +24,10 @@
 		{
 			const addmessageboard=document.getElementById("addmessageboard");
 			const showmessageboard=document.getElementById("showmessageboard");
-			showmessageboard.value=addmessageboard.value;
+			if(showmessageboard.value!=""){
+				showmessageboard.value+="\n";
+			}
+			showmessageboard.value+=addmessageboard.value;
 			addmessageboard.value="";
 		}
 		document.getElementById("Save").addEventListener('click',save);
