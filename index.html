@@ -2,35 +2,33 @@
 
 <html>
     <head>
-		<script>
-			const btnsave=document.getElementById("btnSave");
-			const addmessageboard=document.getElementById("addmessageboard");
-			const showmessageboard=document.getElementById("showmessageboard");	
-			debugger;		
-			/*function save()
-			{
-				document.getElementById("showmessageboard")=document.getElementById("addmessageboard");
-			}*/
-			btnsave.onclick=function(){
-				showmessageboard=addmessageboard;
-			}
-		</script>
 	<style>
 	</style>
     </head>
-
 	<body>
 		<h1>留言板</h1>
 		<div>
 			<p>留言區</p>
 			<textarea id="addmessageboard" style="width:300px;height:100px;"></textarea>
 			<div>
-				<input id="btnSave" type="button" value="儲存">
+				<input id="Save" type="button" value="儲存">
 			</div>
 		</div>
 		<div>
 			<p>顯示留言</p>
 			<textarea id="showmessageboard" style="width:300px;height:100px;"  readonly="readonly"></textarea>
 		</div>
-    </body>
+	</body>
+	<script>
+		function save()
+		{
+			const addmessageboard=document.getElementById("addmessageboard");
+			const showmessageboard=document.getElementById("showmessageboard");
+			showmessageboard.value=addmessageboard.value;
+			addmessageboard.value="";
+		}
+		document.getElementById("Save").addEventListener('click',save);
+		debugger;		
+	</script>
+
 </html>

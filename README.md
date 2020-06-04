@@ -1,6 +1,19 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/4 晚上7:30
+發現如果使用addEventListener的話，應該用document去判斷
+不應該
+``` javascript=
+const btn=document.getElementById
+btn.addEventListener
+```
+如果是用onclick，必須在標籤裡就先做好
+```html=
+<input id="Save" onclick=save() type="button" value="儲存">
+```
+但目前不確定是不是這樣也不知道原因
+
 6/3 晚上11:30
 查詢可能可以透過getElementById去取buttion的id然後設定功能
 但是實際寫上去沒有反應
