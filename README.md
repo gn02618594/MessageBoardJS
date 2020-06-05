@@ -1,6 +1,10 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/5晚上11:26
+嘗試使用DOM去動態增加結點
+但還沒成功
+
 6/4 晚上11:30
 可以刪除指定留言
 先以陣列去存每次輸入的值，每次輸入都是新的一個段落
