@@ -31,14 +31,14 @@
 </body>
 <script>
 	const showmessage = [];
-	const fre = document.getElementById("fre");
+	const fre = document.querySelector("#fre");
 	function savetest() {
-		const addmessage = document.getElementById("addmessage");
+		const addmessage = document.querySelector("#addmessage");
 		const newshow = document.createElement("");
 	}
 	function save() {
-		const addmessageboard = document.getElementById("addmessageboard");
-		const showmessageboard = document.getElementById("showmessageboard");
+		const addmessageboard = document.querySelector("#addmessageboard");
+		const showmessageboard = document.querySelector("#showmessageboard");
 		/*showmessageboard.value+=addmessageboard.value;*/
 		showmessage.push(addmessageboard.value);
 		showselect();
@@ -62,8 +62,8 @@
 		}
 		fre.value = showmessage.length;
 	}
-	document.getElementById("Save").addEventListener('click', save);
-	document.getElementById("Delete").addEventListener('click', del);
+	document.querySelector("#Save").addEventListener('click', save);
+	document.querySelector("#Delete").addEventListener('click', del);
 	debugger;		
 </script>
 

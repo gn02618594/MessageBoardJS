@@ -1,6 +1,10 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/6 11:10
+commit 規範
+IDE 技巧 - Ctrl + D 多重選取加編輯、F2 重新命名
+
 6/6 00:06
 格式化文件，讓程式碼好看點
 
