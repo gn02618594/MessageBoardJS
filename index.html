@@ -1,76 +1,70 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
+
+<head>
 	<style>
 	</style>
-    </head>
-	<body>
-		<h1>留言板</h1>
-		<div>
-			<p>留言區</p>
-			<div id=addmessage>
-			<textarea id="addmessageboard" style="width:300px;height:100px;"></textarea>		
-				<input id="Save" type="button" value="儲存">
-			</div>
+</head>
+
+<body>
+	<h1>留言板</h1>
+	<div>
+		<p>留言區</p>
+		<div id=addmessage>
+			<textarea id="addmessageboard" style="width:300px;height:100px;"></textarea>
+			<input id="Save" type="button" value="儲存">
 		</div>
+	</div>
+	<div>
+		<p>顯示留言</p>
+		<textarea id="showmessageboard" style="width:300px;height:100px;" readonly="readonly"></textarea>
 		<div>
-			<p>顯示留言</p>
-			<textarea id="showmessageboard" style="width:300px;height:100px;"  readonly="readonly"></textarea>
-			<div>
-				<input id="Delete" type="button" value="刪除">
-				<label>第</label>
-				<input id="fre" type="text" style="width:30px;height:10px;">
-				<label>段留言</label>
-			</div>
+			<input id="Delete" type="button" value="刪除">
+			<label>第</label>
+			<input id="fre" type="text" style="width:30px;height:10px;">
+			<label>段留言</label>
 		</div>
-		<div id="show">
-		</div>>
-	</body>
-	<script>
-		const showmessage=[];
-		const fre=document.getElementById("fre");
-		function savetest()
-		{
-			const addmessage=document.getElementById("addmessage");
-			const newshow=document.createElement("");
+	</div>
+	<div id="show">
+	</div>>
+</body>
+<script>
+	const showmessage = [];
+	const fre = document.getElementById("fre");
+	function savetest() {
+		const addmessage = document.getElementById("addmessage");
+		const newshow = document.createElement("");
+	}
+	function save() {
+		const addmessageboard = document.getElementById("addmessageboard");
+		const showmessageboard = document.getElementById("showmessageboard");
+		/*showmessageboard.value+=addmessageboard.value;*/
+		showmessage.push(addmessageboard.value);
+		showselect();
+		addmessageboard.value = "";
+	}
+	function del() {
+		if (showmessage.length == 0) {
+			return;
 		}
-		function save()
-		{
-			const addmessageboard=document.getElementById("addmessageboard");
-			const showmessageboard=document.getElementById("showmessageboard");
-			/*showmessageboard.value+=addmessageboard.value;*/
-			showmessage.push(addmessageboard.value);
-			showselect();
-			addmessageboard.value="";
+		if (fre.value == "") {
+			showmessage.splice(0, showmessage.length);
+		} else {
+			showmessage.splice(fre.value - 1, 1);
 		}
-		function del()
-		{
-			if(showmessage.length==0)
-			{
-			return;	
-			}
-			if(fre.value=="")
-			{
-				showmessage.splice(0,showmessage.length);
-			}else
-			{
-			showmessage.splice(fre.value-1,1);
-			}
-			showselect();
+		showselect();
+	}
+	function showselect() {
+		showmessageboard.value = "";
+		for (i = 0; i < showmessage.length; i++) {
+			showmessageboard.value += showmessage[i] + "\n";
 		}
-		function showselect()
-		{
-			showmessageboard.value="";
-			for(i=0;i<showmessage.length;i++)
-			{
-				showmessageboard.value+=showmessage[i]+"\n";
-			}
-			fre.value=showmessage.length;
-		}
-		document.getElementById("Save").addEventListener('click',save);
-		document.getElementById("Delete").addEventListener('click',del);
-		debugger;		
-	</script>
+		fre.value = showmessage.length;
+	}
+	document.getElementById("Save").addEventListener('click', save);
+	document.getElementById("Delete").addEventListener('click', del);
+	debugger;		
+</script>
 
 </html>

@@ -1,6 +1,9 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/6 00:06
+格式化文件，讓程式碼好看點
+
 6/5晚上11:26
 嘗試使用DOM去動態增加結點
 但還沒成功
