@@ -1,6 +1,10 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/7 11:00
+嘗試使用網路上js使用DOM操作的範例
+但沒有成功
+
 6/6 11:10
 commit 規範
 IDE 技巧 - Ctrl + D 多重選取加編輯、F2 重新命名

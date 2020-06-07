@@ -11,35 +11,63 @@
 	<h1>留言板</h1>
 	<div>
 		<p>留言區</p>
-		<div id=addmessage>
-			<textarea id="addmessageboard" style="width:300px;height:100px;"></textarea>
-			<input id="Save" type="button" value="儲存">
-		</div>
+		<!--<div id=addmessage>
+			<textarea id="addmessageboard" style="width:300px;height:100px;"></textarea>-->
+		<input type="text" id="msg" size="40">
+		<input type="button" id="btn" value="儲存">
+		<!--</div>-->
 	</div>
 	<div>
 		<p>顯示留言</p>
-		<textarea id="showmessageboard" style="width:300px;height:100px;" readonly="readonly"></textarea>
+		<!--<textarea id="showmessageboard" style="width:300px;height:100px;" readonly="readonly"></textarea>
 		<div>
 			<input id="Delete" type="button" value="刪除">
 			<label>第</label>
 			<input id="fre" type="text" style="width:30px;height:10px;">
 			<label>段留言</label>
+		</div>-->
+		<div id="msg_c">
 		</div>
 	</div>
-	<div id="show">
-	</div>>
 </body>
 <script>
 	const showmessage = [];
 	const fre = document.querySelector("#fre");
-	function savetest() {
+	/*function savetest() {
 		const addmessage = document.querySelector("#addmessage");
-		const newshow = document.createElement("");
+		const oMsg_c = document.querySelector("#show");
+		const newshow = document.createElement("ul");
+		oMsg_c.appendChild(newshow);
+		const oli = document.createElement("li");
+		oli.innerHTML = addmessage.value + "<span>刪除</span>";
+		const oli1 = newshow.getElementsByTagName("li");
+	}*/
+	function savetest()
+	{
+		const oMsg =document.querySelector("#msg");
+		const oBtn=document.querySelector("#btn");
+		const oMsg_c=document.querySelector("#msg_c");
+		const oUl=document.createElement("ul");
+		oMsg_c.appendChild(oUl);
+		const sVal=oMsg.value;
+		const oli=document.createElement("li");
+		oli.innerHTML=sVal+"<span>刪除</span>";
+		const oli1=oUl.querySelector("li");
+		if(oli1.length>0)
+		{
+			oUl.insertBefore(oli,oli1[0]);
+		}else
+		{
+			oUl.appendChild(oli);
+		}
+		oMsg.value='';
+	}
+	function deel()
+	{
 	}
 	function save() {
 		const addmessageboard = document.querySelector("#addmessageboard");
 		const showmessageboard = document.querySelector("#showmessageboard");
-		/*showmessageboard.value+=addmessageboard.value;*/
 		showmessage.push(addmessageboard.value);
 		showselect();
 		addmessageboard.value = "";
@@ -62,8 +90,8 @@
 		}
 		fre.value = showmessage.length;
 	}
-	document.querySelector("#Save").addEventListener('click', save);
-	document.querySelector("#Delete").addEventListener('click', del);
+	document.querySelector("#btn").addEventListener('click', savetest);
+	/*document.querySelector("#Delete").addEventListener('click', del);*/
 	debugger;		
 </script>
 
