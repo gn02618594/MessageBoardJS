@@ -1,6 +1,17 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/8 10:30
+可以動態新增一筆一筆的資料以及刪除按鈕
+但是刪除還沒想到怎麼讓它可以去抓到點選"刪除"那一列的index
+```javascript=
+//網路上是使用此範例
+const oli1=oUl.getElementsByTagName("li");
+//自己嘗試改成
+const oli1=oUl.querySelector("#li");
+卻是null
+```
+
 6/7 11:00
 嘗試使用網路上js使用DOM操作的範例
 但沒有成功

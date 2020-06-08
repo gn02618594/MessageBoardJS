@@ -47,13 +47,13 @@
 		const oMsg =document.querySelector("#msg");
 		const oBtn=document.querySelector("#btn");
 		const oMsg_c=document.querySelector("#msg_c");
-		const oUl=document.createElement("ul");
+		const oUl=document.createElement("div");
 		oMsg_c.appendChild(oUl);
 		const sVal=oMsg.value;
-		const oli=document.createElement("li");
-		oli.innerHTML=sVal+"<span>刪除</span>";
-		const oli1=oUl.querySelector("li");
-		if(oli1.length>0)
+		const oli=document.createElement("div");
+		oli.innerHTML=sVal+"<button id='Delete'>刪除</button>";
+		const oli1=oUl.getElementsByTagName("div");
+		if(oli1.length > 0)
 		{
 			oUl.insertBefore(oli,oli1[0]);
 		}else
