@@ -1,6 +1,12 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/9 10:00
+id 為 delete 的 button 是動態增加
+querySelector 判斷不到 delete 的存在，所以a ddEventListener 會報錯
+但是一開始先 const 一個變數去 querySelector 會在網頁一開始跑時就宣告完畢
+沒辦法去監聽是按了哪個按鈕
+
 6/8 10:30
 可以動態新增一筆一筆的資料以及刪除按鈕
 但是刪除還沒想到怎麼讓它可以去抓到點選"刪除"那一列的index
