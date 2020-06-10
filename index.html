@@ -49,15 +49,16 @@
 		const oUl = document.createElement("div");
 		oMsg_c.appendChild(oUl);
 		const sVal = oMsg.value;
-		/*const oli=document.createElement("div");
-		oli.innerHTML=sVal+"<button id='delete'>刪除</button>";*/
-		oUl.innerHTML = sVal + "<button id='delete'>刪除</button>";
-		const oli1 = oUl.querySelectorAll("div");
-		if (oli1.length > 0) {
-			oUl.insertBefore(oUl, oli1[0]);
-		} else {
-			/*oUl.appendChild(oUl);*/
-		}
+		showmessage.push(sVal);
+		const dBtn=document.createElement('button');
+		dBtn.textContent='刪除';
+		dBtn.id="Delete"+showmessage.length;
+		dBtn.addEventListener('click',() => {
+			const dBtnParent =dBtn.parentNode;
+			dBtnParent.remove();
+		})
+		oUl.textContent=sVal;
+		oUl.appendChild(dBtn);
 		oMsg.value = '';
 	}
 	function save() {
@@ -87,16 +88,9 @@
 		}
 		showselect();
 	}
-	function onClickDeleteItemTest() {
-		const a = document.querySelector("button");
-
-	}
 	document.querySelector("#btn").addEventListener('click', savetest);
-	const btnDelete=document.querySelector("#delete");
+			
 	
-	if (document.querySelector("#delete")) {
-		document.querySelector("#delete").addEventListener('click', onClickDeleteItemTest);
-	}
 	debugger;		
 </script>
 

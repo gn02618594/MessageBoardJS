@@ -1,13 +1,18 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
-6/9 10:00
+6/10 21:20
+改用createElement去新增button
+然後用一個陣列存值可以讓id動態增加一個序號
+並且有刪除的功能
+
+6/9 22:00
 id 為 delete 的 button 是動態增加
 querySelector 判斷不到 delete 的存在，所以a ddEventListener 會報錯
 但是一開始先 const 一個變數去 querySelector 會在網頁一開始跑時就宣告完畢
 沒辦法去監聽是按了哪個按鈕
 
-6/8 10:30
+6/8 22:30
 可以動態新增一筆一筆的資料以及刪除按鈕
 但是刪除還沒想到怎麼讓它可以去抓到點選"刪除"那一列的index
 ```javascript=
@@ -18,30 +23,30 @@ const oli1=oUl.querySelector("#li");
 卻是null
 ```
 
-6/7 11:00
+6/7 23:00
 嘗試使用網路上js使用DOM操作的範例
 但沒有成功
 
-6/6 11:10
+6/6 23:10
 commit 規範
 IDE 技巧 - Ctrl + D 多重選取加編輯、F2 重新命名
 
 6/6 00:06
 格式化文件，讓程式碼好看點
 
-6/5晚上11:26
+6/5 23:26
 嘗試使用DOM去動態增加結點
 但還沒成功
 
-6/4 晚上11:30
+6/4 23:30
 可以刪除指定留言
 先以陣列去存每次輸入的值，每次輸入都是新的一個段落
 可以刪除指定段落，看之後有沒有更好的做法
 
-6/4 晚上10:50
+6/4 22:50
 輸入留言不蓋掉原本的留言
 
-6/4 晚上7:30
+6/4 19:30
 發現如果使用addEventListener的話，應該用document去判斷
 不應該
 ``` javascript=
@@ -54,12 +59,12 @@ btn.addEventListener
 ```
 但目前不確定是不是這樣也不知道原因
 
-6/3 晚上11:30
+6/3 23:30
 查詢可能可以透過getElementById去取buttion的id然後設定功能
 但是實際寫上去沒有反應
 想說試著用debugger下中斷點去測試，但是按按鈕後沒有進入debugger模式，不知該怎麼測試執行過程
 
-6/3 晚上10:00
+6/3 22:00
 在家clone下來後發現中文變成亂碼
 "可能"是因為透過notepad++開啟時，被預設編碼為ANSI
 只能透過把亂碼改成中文後在push一次
