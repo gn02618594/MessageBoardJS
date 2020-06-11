@@ -11,37 +11,18 @@
 	<h1>留言板</h1>
 	<div>
 		<p>留言區</p>
-		<!--<div id=addmessage>
-			<textarea id="addmessageboard" style="width:300px;height:100px;"></textarea>-->
 		<input type="text" id="msg" size="40">
 		<input type="button" id="btn" value="儲存">
-		<!--</div>-->
 	</div>
 	<div>
 		<p>顯示留言</p>
-		<!--<textarea id="showmessageboard" style="width:300px;height:100px;" readonly="readonly"></textarea>
-		<div>
-			<input id="delete" type="button" value="刪除">
-			<label>第</label>
-			<input id="fre" type="text" style="width:30px;height:10px;">
-			<label>段留言</label>
-		</div>-->
 		<div id="msg_c">
 		</div>
 	</div>
 </body>
 <script>
 	const showmessage = [];
-	const fre = document.querySelector("#fre");
-	/*function savetest() {
-		const addmessage = document.querySelector("#addmessage");
-		const oMsg_c = document.querySelector("#show");
-		const newshow = document.createElement("ul");
-		oMsg_c.appendChild(newshow);
-		const oli = document.createElement("li");
-		oli.innerHTML = addmessage.value + "<span>刪除</span>";
-		const oli1 = newshow.getElementsByTagName("li");
-	}*/
+	let messageDetailIndex=0;
 	function savetest() {
 		const oMsg = document.querySelector("#msg");
 		const oBtn = document.querySelector("#btn");
@@ -49,44 +30,35 @@
 		const oUl = document.createElement("div");
 		oMsg_c.appendChild(oUl);
 		const sVal = oMsg.value;
-		showmessage.push(sVal);
-		const dBtn=document.createElement('button');
-		dBtn.textContent='刪除';
-		dBtn.id="Delete"+showmessage.length;
-		dBtn.addEventListener('click',() => {
-			const dBtnParent =dBtn.parentNode;
+		const dBtnDelete=document.createElement('button');
+		dBtnDelete.textContent='刪除';
+		dBtnDelete.id="Delete"+messageDetailIndex;
+		const dBtnEdit=document.createElement('button');
+		dBtnEdit.textContent='編輯';
+		dBtnEdit.id="Edit"+messageDetailIndex;
+		dBtnEdit.addEventListener('click',() => {
+			oMsg.value=dBtnEdit.parentNode.querySelector("a").innerText;
+		})
+		const messageDetail={
+			no:messageDetailIndex,
+			name:"test",
+			message:sVal,
+			Deleteid:dBtnDelete.id,
+			enditid:dBtnEdit.id
+		}
+		messageDetailIndex++;
+		showmessage.push(messageDetail);
+		dBtnDelete.addEventListener('click',() => {
+			const dBtnParent =dBtnDelete.parentNode;			
+			showmessage.splice(dBtnDelete.id.substr(6),1);
 			dBtnParent.remove();
 		})
-		oUl.textContent=sVal;
-		oUl.appendChild(dBtn);
+		const content=document.createElement('a');
+		content.textContent=sVal;
+		oUl.appendChild(content);
+		oUl.appendChild(dBtnDelete);
+		oUl.appendChild(dBtnEdit);
 		oMsg.value = '';
-	}
-	function save() {
-		const addmessageboard = document.querySelector("#addmessageboard");
-		const showmessageboard = document.querySelector("#showmessageboard");
-		showmessage.push(addmessageboard.value);
-		showselect();
-		addmessageboard.value = "";
-	}
-
-	function showselect() {
-		showmessageboard.value = "";
-		for (i = 0; i < showmessage.length; i++) {
-			showmessageboard.value += showmessage[i] + "\n";
-		}
-		fre.value = showmessage.length;
-	}
-
-	function del() {
-		if (showmessage.length == 0) {
-			return;
-		}
-		if (fre.value == "") {
-			showmessage.splice(0, showmessage.length);
-		} else {
-			showmessage.splice(fre.value - 1, 1);
-		}
-		showselect();
 	}
 	document.querySelector("#btn").addEventListener('click', savetest);
 			

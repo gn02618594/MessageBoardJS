@@ -1,6 +1,11 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/11 11:00
+新增編輯功能-目前是只能把點擊的那一個回去留言區
+陣列改存新增留言的物件
+增加一個變數當做自動編號
+
 6/10 21:20
 改用createElement去新增button
 然後用一個陣列存值可以讓id動態增加一個序號
