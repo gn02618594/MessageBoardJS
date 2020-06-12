@@ -22,47 +22,69 @@
 </body>
 <script>
 	const showmessage = [];
-	let messageDetailIndex=0;
+	let messageDetailIndex = 0;
+	let test=null;
+	let oldvalue=null;
 	function savetest() {
+		if (test!=null) {
+			editmessage();
+		} else {
+			newmessage();
+		}
+	}
+	function editmessage() {
+		const oMsg = document.querySelector("#msg");
+		const oBtn = document.querySelector("#btn");
+		const oMsg_c = document.querySelector("#msg_c");
+		const sVal = oMsg.value;
+		test[0].message=sVal;
+		oldvalue.innerText=sVal;
+		oMsg.value='';
+		test=null;
+		oldvalue=null;
+	}
+	function newmessage() {
 		const oMsg = document.querySelector("#msg");
 		const oBtn = document.querySelector("#btn");
 		const oMsg_c = document.querySelector("#msg_c");
 		const oUl = document.createElement("div");
 		oMsg_c.appendChild(oUl);
 		const sVal = oMsg.value;
-		const dBtnDelete=document.createElement('button');
-		dBtnDelete.textContent='刪除';
-		dBtnDelete.id="Delete"+messageDetailIndex;
-		const dBtnEdit=document.createElement('button');
-		dBtnEdit.textContent='編輯';
-		dBtnEdit.id="Edit"+messageDetailIndex;
-		dBtnEdit.addEventListener('click',() => {
-			oMsg.value=dBtnEdit.parentNode.querySelector("a").innerText;
+		const dBtnDelete = document.createElement('button');
+		dBtnDelete.textContent = '刪除';
+		dBtnDelete.id = "Delete" + messageDetailIndex;
+		const dBtnEdit = document.createElement('button');
+		dBtnEdit.textContent = '編輯';
+		dBtnEdit.id = "Edit" + messageDetailIndex;
+		dBtnEdit.addEventListener('click', () => {
+			oldvalue=dBtnEdit.parentNode.querySelector("a");
+			oMsg.value = oldvalue.innerText;
+			test = showmessage.filter(tests => tests.no == dBtnEdit.id.substr(4))
 		})
-		const messageDetail={
-			no:messageDetailIndex,
-			name:"test",
-			message:sVal,
-			Deleteid:dBtnDelete.id,
-			enditid:dBtnEdit.id
+		const messageDetail = {
+			no: messageDetailIndex,
+			name: "test",
+			message: sVal,
+			Deleteid: dBtnDelete.id,
+			Editid: dBtnEdit.id
 		}
 		messageDetailIndex++;
 		showmessage.push(messageDetail);
-		dBtnDelete.addEventListener('click',() => {
-			const dBtnParent =dBtnDelete.parentNode;			
-			showmessage.splice(dBtnDelete.id.substr(6),1);
+		dBtnDelete.addEventListener('click', () => {
+			const dBtnParent = dBtnDelete.parentNode;
+			showmessage.splice(dBtnDelete.id.substr(6), 1);
 			dBtnParent.remove();
 		})
-		const content=document.createElement('a');
-		content.textContent=sVal;
+		const content = document.createElement('a');
+		content.textContent = sVal;
 		oUl.appendChild(content);
 		oUl.appendChild(dBtnDelete);
 		oUl.appendChild(dBtnEdit);
 		oMsg.value = '';
 	}
 	document.querySelector("#btn").addEventListener('click', savetest);
-			
-	
+
+
 	debugger;		
 </script>
 
