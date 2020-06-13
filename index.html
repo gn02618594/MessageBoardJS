@@ -13,6 +13,7 @@
 		<p>留言區</p>
 		<input type="text" id="msg" size="40">
 		<input type="button" id="btn" value="儲存">
+		<input type="button" id="clearmessage" value="新增留言">
 	</div>
 	<div>
 		<p>顯示留言</p>
@@ -23,10 +24,10 @@
 <script>
 	const showmessage = [];
 	let messageDetailIndex = 0;
-	let test=null;
-	let oldvalue=null;
+	let test = null;
+	let oldvalue = null;
 	function savetest() {
-		if (test!=null) {
+		if (test != null) {
 			editmessage();
 		} else {
 			newmessage();
@@ -37,11 +38,11 @@
 		const oBtn = document.querySelector("#btn");
 		const oMsg_c = document.querySelector("#msg_c");
 		const sVal = oMsg.value;
-		test[0].message=sVal;
-		oldvalue.innerText=sVal;
-		oMsg.value='';
-		test=null;
-		oldvalue=null;
+		test[0].message = sVal;
+		oldvalue.innerText = sVal;
+		oMsg.value = '';
+		test = null;
+		oldvalue = null;
 	}
 	function newmessage() {
 		const oMsg = document.querySelector("#msg");
@@ -57,7 +58,7 @@
 		dBtnEdit.textContent = '編輯';
 		dBtnEdit.id = "Edit" + messageDetailIndex;
 		dBtnEdit.addEventListener('click', () => {
-			oldvalue=dBtnEdit.parentNode.querySelector("a");
+			oldvalue = dBtnEdit.parentNode.querySelector("a");
 			oMsg.value = oldvalue.innerText;
 			test = showmessage.filter(tests => tests.no == dBtnEdit.id.substr(4))
 		})
@@ -82,8 +83,13 @@
 		oUl.appendChild(dBtnEdit);
 		oMsg.value = '';
 	}
+	function clearmessage() {
+		test = null;
+		oldvalue = null;
+		savetest();
+	}
 	document.querySelector("#btn").addEventListener('click', savetest);
-
+	document.querySelector("#clearmessage").addEventListener('click', clearmessage);
 
 	debugger;		
 </script>
