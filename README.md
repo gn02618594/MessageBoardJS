@@ -1,6 +1,10 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/14 16:40
+新增第五筆之後的留言會看不到
+增加可以搜尋的 html 元素，但 javascript 未完成
+
 6/13 21:40
 新增一個新增留言按鈕，點編輯留言後要捨棄編輯，按了之後可以直接新增一筆
 
