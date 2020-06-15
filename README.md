@@ -1,6 +1,12 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/15 22:50
+把DOM跟ARRAY操作拆開來
+先操作完陣列，在依照陣列有的東西去建DOM
+刪除方法沒找到可以刪除指定項的方式
+編輯也要修改方式
+
 6/14 16:40
 新增第五筆之後的留言會看不到
 增加可以搜尋的 html 元素，但 javascript 未完成
