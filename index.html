@@ -27,10 +27,68 @@
 	</div>
 </body>
 <script>
-	const showmessage = [];
+	const messageList = [];
 	let messageDetailIndex = 0;
 	let test = null;
 	let oldvalue = null;
+	let oMsg = null;
+	let oBtn = null;
+	let oMsg_c = null;
+	let sVal = null;
+	function save() {
+		oMsg = document.querySelector("#msg");
+		oBtn = document.querySelector("#btn");
+		oMsg_c = document.querySelector("#msg_c");
+		sVal = oMsg.value;
+		arraychane();
+		removedom();
+		messageDetailIndex++;
+		oMsg.value="";
+	}
+	function arraychane() {
+		const messageInfo = {
+			no: messageDetailIndex,
+			name: "test",
+			Message: sVal,
+			MessageId: "Message" + messageDetailIndex,
+			Deleteid: "Delete" + messageDetailIndex,
+			Editid: "Edit" + messageDetailIndex
+		}
+		messageList.push(messageInfo);
+	}
+	function removedom() {
+		while (oMsg_c.firstChild) {
+			oMsg_c.removeChild(oMsg_c.firstChild);
+		}
+		domchange();
+	}
+	function domchange() {
+		messageList.forEach((item) => {
+			const oUl = document.createElement("div");
+			oUl.id = item.MessageId;
+			oMsg_c.appendChild(oUl);
+			const dBtnDelete = document.createElement('button');
+			dBtnDelete.textContent = '刪除';
+			dBtnDelete.id = item.Deleteid;
+			const dBtnEdit = document.createElement('button');
+			dBtnEdit.textContent = '編輯';
+			dBtnEdit.id = item.Editid;
+			dBtnEdit.addEventListener('click', () => {
+				test = messageList.filter(tests => tests.no == dBtnEdit.id.substr(4))
+				removedom(oMsg_c);
+			})
+			dBtnDelete.addEventListener('click', () => {
+				messageList.splice(messageList[dBtnDelete.id]);
+				removedom();
+			})
+			const content = document.createElement('a');
+			content.textContent = item.Message;
+			oUl.appendChild(content);
+			oUl.appendChild(dBtnDelete);
+			oUl.appendChild(dBtnEdit);
+
+		});
+	}
 	function savetest() {
 		if (test != null) {
 			editmessage();
@@ -39,10 +97,6 @@
 		}
 	}
 	function editmessage() {
-		const oMsg = document.querySelector("#msg");
-		const oBtn = document.querySelector("#btn");
-		const oMsg_c = document.querySelector("#msg_c");
-		const sVal = oMsg.value;
 		test[0].message = sVal;
 		oldvalue.innerText = sVal;
 		oMsg.value = '';
@@ -55,7 +109,7 @@
 		const oMsg_c = document.querySelector("#msg_c");
 		const oUl = document.createElement("div");
 		oUl.id = "Message" + messageDetailIndex;
-		if (showmessage.length >= 5) {
+		if (messageList.length >= 5) {
 			oUl.style.display = 'none';
 		}
 		oMsg_c.appendChild(oUl);
@@ -69,20 +123,12 @@
 		dBtnEdit.addEventListener('click', () => {
 			oldvalue = dBtnEdit.parentNode.querySelector("a");
 			oMsg.value = oldvalue.innerText;
-			test = showmessage.filter(tests => tests.no == dBtnEdit.id.substr(4))
+			test = messageList.filter(tests => tests.no == dBtnEdit.id.substr(4))
 		})
-		const messageDetail = {
-			no: messageDetailIndex,
-			name: "test",
-			message: sVal,
-			Deleteid: dBtnDelete.id,
-			Editid: dBtnEdit.id
-		}
 		messageDetailIndex++;
-		showmessage.push(messageDetail);
 		dBtnDelete.addEventListener('click', () => {
 			const dBtnParent = dBtnDelete.parentNode;
-			showmessage.splice(dBtnDelete.id.substr(6), 1);
+			messageList.splice(dBtnDelete.id.substr(6), 1);
 			dBtnParent.remove();
 		})
 		const content = document.createElement('a');
@@ -116,9 +162,9 @@
 			document.designMode = "off";
 		}
 	}
-	document.querySelector("#btn").addEventListener('click', savetest);
+	document.querySelector("#btn").addEventListener('click', save);
 	document.querySelector("#clearmessage").addEventListener('click', clearmessage);
-	document.querySelector("#searchbtn").addEventListener('click',searchmessage);
+	document.querySelector("#searchbtn").addEventListener('click', searchmessage);
 	debugger;		
 </script>
 
