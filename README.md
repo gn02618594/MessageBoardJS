@@ -1,6 +1,10 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/16 23:20
+嘗試點擊編輯後可以 DOM 產生編輯專用的畫面，取消編輯後再回到新增留言的畫面
+但還沒想到怎麼去刪除陣列中的值跟編輯陣列中的值
+
 6/15 22:50
 把DOM跟ARRAY操作拆開來
 先操作完陣列，在依照陣列有的東西去建DOM
