@@ -162,21 +162,15 @@
 
 	function searchmessage() {
 		const searchtext = document.querySelector("#searchtext");
-		var isfound = 0;
-		if (window.find && window.getSelection) {
-			document.designMode = "on";
-			var sel = window.getSelection();
-			sel.collapseToEnd();
-			isfound = 0;
-			while (window.find(searchtext.value)) {
-				document.execCommand("HiliteColor", false, "aquamarine");
-				sel.collapseToEnd();
-				isfound = 1;
-			}
-			if (isfound == 0) {
-				alert('cant find');
-			}
-			document.designMode = "off";
+		const searchmessageList=messageList.filter((n) => n.Message=searchtext.textContent);
+		if(searchmessageList.length>0)
+		{
+			while (oMsg_c.firstChild) {
+			oMsg_c.removeChild(oMsg_c.firstChild);
+			searchmessageList.forEach((item) => {
+				
+			})
+		}
 		}
 	}
 	document.querySelector("#btnsave").addEventListener('click', save);
