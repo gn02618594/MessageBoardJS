@@ -37,29 +37,29 @@
 	let sVal = null;
 	let warnmessage = null;
 	function save() {
-		oMsg = document.querySelector("#newmsg");
-		oBtn = document.querySelector("#btnsave");
-		oMsg_c = document.querySelector("#msg_c");
+		oMsg = document.querySelector('#newmsg');
+		oBtn = document.querySelector('#btnsave');
+		oMsg_c = document.querySelector('#msg_c');
 		sVal = oMsg.value;
-		warnmessage = document.querySelector("#warningmessage");
-		if (sVal == "") {
-			warnmessage.innerText = "請輸入內容";
+		warnmessage = document.querySelector('#warningmessage');
+		if (sVal == '') {
+			warnmessage.innerText = '請輸入內容';
 			return;
 		}
-		warnmessage.textContent = "";
+		warnmessage.textContent = '';
 		arraychane();
 		removedom();
 		messageDetailIndex++;
-		oMsg.value = "";
+		oMsg.value = '';
 	}
 	function arraychane() {
 		const messageInfo = {
 			no: messageDetailIndex,
-			name: "test",
+			name: 'test',
 			Message: sVal,
-			MessageId: "Message" + messageDetailIndex,
-			Deleteid: "Delete" + messageDetailIndex,
-			Editid: "Edit" + messageDetailIndex
+			MessageId: 'Message' + messageDetailIndex,
+			Deleteid: 'Delete' + messageDetailIndex,
+			Editid: 'Edit' + messageDetailIndex
 		}
 		messageList.push(messageInfo);
 	}
@@ -71,7 +71,7 @@
 	}
 	function domchange() {
 		messageList.forEach((item) => {
-			const oUl = document.createElement("div");
+			const oUl = document.createElement('div');
 			oUl.id = item.MessageId;
 			oMsg_c.appendChild(oUl);
 			const dBtnDelete = document.createElement('button');
@@ -81,43 +81,43 @@
 			dBtnEdit.textContent = '編輯';
 			dBtnEdit.id = item.Editid;
 			dBtnEdit.addEventListener('click', () => {
-				const messagepanel = document.querySelector("#newmessagepanel");
+				const messagepanel = document.querySelector('#newmessagepanel');
 				while (messagepanel.firstChild) {
 					messagepanel.removeChild(messagepanel.firstChild);
 				}
-				const editmsgp = document.createElement("p");
-				editmsgp.textContent = "編輯留言";
-				const editmsgtext = document.createElement("input");
-				editmsgtext.type = "text";
-				editmsgtext.size = "40";
-				editmsgtext.id = "texteditmsg";
-				editmsgtext.value = dBtnEdit.parentNode.querySelector("a").text;
-				const editcancelbutton = document.createElement("button");
-				editcancelbutton.textContent = "取消編輯";
-				editcancelbutton.id = "btneditcancel";
+				const editmsgp = document.createElement('p');
+				editmsgp.textContent = '編輯留言';
+				const editmsgtext = document.createElement('input');
+				editmsgtext.type = 'text';
+				editmsgtext.size = '40';
+				editmsgtext.id = 'texteditmsg';
+				editmsgtext.value = dBtnEdit.parentNode.querySelector('a').text;
+				const editcancelbutton = document.createElement('button');
+				editcancelbutton.textContent = '取消編輯';
+				editcancelbutton.id = 'btneditcancel';
 				editcancelbutton.addEventListener('click', () => {
 					while (messagepanel.firstChild) {
 						messagepanel.removeChild(messagepanel.firstChild);
 					}
-					const newmsgp = document.createElement("p");
-					newmsgp.textContent = "新增留言";
-					const newmsgtext = document.createElement("input");
-					newmsgtext.type = "text";
-					newmsgtext.size = "40";
-					newmsgtext.id = "newmsg";
-					const newmsgbtn = document.createElement("input");
-					newmsgbtn.type = "button";
-					newmsgbtn.value = "儲存";
-					newmsgbtn.id = "btnsave";
+					const newmsgp = document.createElement('p');
+					newmsgp.textContent = '新增留言';
+					const newmsgtext = document.createElement('input');
+					newmsgtext.type = 'text';
+					newmsgtext.size = '40';
+					newmsgtext.id = 'newmsg';
+					const newmsgbtn = document.createElement('input');
+					newmsgbtn.type = 'button';
+					newmsgbtn.value = '儲存';
+					newmsgbtn.id = 'btnsave';
 					newmsgbtn.addEventListener('click', save);
 					messagepanel.appendChild(newmsgp);
 					messagepanel.appendChild(newmsgtext);
 					messagepanel.appendChild(newmsgbtn);
 				})
-				const editsavebutton = document.createElement("input");
-				editsavebutton.type = "button";
-				editsavebutton.value = "儲存";
-				editsavebutton.id = "btnsave";
+				const editsavebutton = document.createElement('input');
+				editsavebutton.type = 'button';
+				editsavebutton.value = '儲存';
+				editsavebutton.id = 'btnsave';
 				editsavebutton.addEventListener('click',() =>{
 					let editmessageList=messageList.filter((n) => n.Editid=== dBtnEdit.id);
 					editmessageList[0].Message=editmsgtext.value;
@@ -125,16 +125,16 @@
 					while (messagepanel.firstChild) {
 						messagepanel.removeChild(messagepanel.firstChild);
 					}
-					const newmsgp = document.createElement("p");
-					newmsgp.textContent = "新增留言";
-					const newmsgtext = document.createElement("input");
-					newmsgtext.type = "text";
-					newmsgtext.size = "40";
-					newmsgtext.id = "newmsg";
-					const newmsgbtn = document.createElement("input");
-					newmsgbtn.type = "button";
-					newmsgbtn.value = "儲存";
-					newmsgbtn.id = "btnsave";
+					const newmsgp = document.createElement('p');
+					newmsgp.textContent = '新增留言';
+					const newmsgtext = document.createElement('input');
+					newmsgtext.type = 'text';
+					newmsgtext.size = '40';
+					newmsgtext.id = 'newmsg';
+					const newmsgbtn = document.createElement('input');
+					newmsgbtn.type = 'button';
+					newmsgbtn.value = '儲存';
+					newmsgbtn.id = 'btnsave';
 					newmsgbtn.addEventListener('click', save);
 					messagepanel.appendChild(newmsgp);
 					messagepanel.appendChild(newmsgtext);
@@ -161,7 +161,7 @@
 	}
 
 	function searchmessage() {
-		const searchtext = document.querySelector("#searchtext");
+		const searchtext = document.querySelector('#searchtext');
 		const searchmessageList=messageList.filter((n) => n.Message=searchtext.textContent);
 		if(searchmessageList.length>0)
 		{
@@ -173,8 +173,8 @@
 		}
 		}
 	}
-	document.querySelector("#btnsave").addEventListener('click', save);
-	document.querySelector("#searchbtn").addEventListener('click', searchmessage);
+	document.querySelector('#btnsave').addEventListener('click', save);
+	document.querySelector('#searchbtn').addEventListener('click', searchmessage);
 	debugger;		
 </script>
 

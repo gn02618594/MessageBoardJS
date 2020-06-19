@@ -1,6 +1,9 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/19 22:00
+做搜尋還是沒做出來
+
 6/18 23:30
 要做搜尋的功能，想法是去取陣列裡符合的值，在DOM產生到留言區
 但這樣會把 domchange 那段重覆寫
