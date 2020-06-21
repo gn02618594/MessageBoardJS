@@ -1,5 +1,10 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
+
+6/21 18:00
+為了整合方法，讓程式碼更簡潔
+嘗試用小馬彬的範例寫
+
 6/20 22:00
 未做先簽
 6/19 22:00
