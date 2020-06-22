@@ -1,6 +1,9 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/22 22:00
+嘗試把自己寫的那個版本改成小馬彬的寫法
+
 6/21 18:00
 為了整合方法，讓程式碼更簡潔
 嘗試用小馬彬的範例寫
