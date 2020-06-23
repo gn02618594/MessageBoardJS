@@ -135,6 +135,35 @@
 			oUl.appendChild(dBtnEdit);
 		})
 	}
+	function init(){
+		render();
+	}
+	init();
+
+	function addMessage(title='',value=''){
+		messageList=[
+			...messageList,{
+				id:messageDetailIndex,
+				title,
+				content:value,
+			},
+		];
+		render();
+	}
+	function editMessage(id,title='',value='')
+	{
+
+	}
+	function setEditMessageInfo(messageInfo){
+		editMessageInfo=messageInfo;
+	}
+	function setMessage(title='',value=''){
+
+	}
+	function deleteMessage(id){
+		messageList=messageList.filter((messageInfo) => messageInfo.id!==id);
+		render();
+	}
 	function save() {	
 		sVal = messageContentInput.value;
 		warnmessage = document.querySelector('#warningmessage');
