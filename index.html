@@ -17,6 +17,7 @@
 	<div id="newmessagepanel">
 		<p>新增留言</p>
 		<input type="text" id="message-content" size="40">
+		<button id="message-cancel-edit-btn" style="display:none;">取消編輯</button>
 		<input type="button" id="message-btn" value="儲存">
 	</div>
 	<label id="warningmessage" style="color: red;"></label>
@@ -29,142 +30,106 @@
 <script>
 	let messageList = [];
 	let messageDetailIndex = 0;
-	let editMessageInfo=null;
 	const messageContentInput = document.querySelector('#message-content');
 	const messageBtn = document.querySelector('#message-btn');
 	const messageListContainer = document.querySelector('#message-list-container');
-	let sVal = null;
+	const messageCancelEditBtn = document.querySelector('#message-cancel-edit-btn');
 	let warnmessage = null;
+
 	function clear() {
-		editMessageInfo=null;
-		messageContentInput.value='';
+		editMessageInfo = null;
+		messageCancelEditBtn.style.display = 'none';
+		messageContentInput.value = '';
+
 		while (messageListContainer.firstChild) {
 			messageListContainer.removeChild(messageListContainer.firstChild);
 		}
-		domchange();
 	}
 
-	function render(){
+	function render() {
 		clear();
 		messageList.forEach((messageInfo) => {
-			const oUl = document.createElement('div');
-			oUl.id = item.MessageId;
-			messageListContainer.appendChild(oUl);
-			const dBtnDelete = document.createElement('button');
-			dBtnDelete.textContent = '刪除';
-			dBtnDelete.id = item.Deleteid;
+			const content = document.createElement('span');
+			content.textContent = messageInfo.content;
+
 			const dBtnEdit = document.createElement('button');
 			dBtnEdit.textContent = '編輯';
-			dBtnEdit.id = item.Editid;
-			dBtnEdit.addEventListener('click', () => {
-				const messagepanel = document.querySelector('#newmessagepanel');
-				while (messagepanel.firstChild) {
-					messagepanel.removeChild(messagepanel.firstChild);
-				}
-				const editmsgp = document.createElement('p');
-				editmsgp.textContent = '編輯留言';
-				const editmsgtext = document.createElement('input');
-				editmsgtext.type = 'text';
-				editmsgtext.size = '40';
-				editmsgtext.id = 'texteditmsg';
-				editmsgtext.value = dBtnEdit.parentNode.querySelector('a').text;
-				const editcancelbutton = document.createElement('button');
-				editcancelbutton.textContent = '取消編輯';
-				editcancelbutton.id = 'btneditcancel';
-				editcancelbutton.addEventListener('click', () => {
-					while (messagepanel.firstChild) {
-						messagepanel.removeChild(messagepanel.firstChild);
-					}
-					const newmsgp = document.createElement('p');
-					newmsgp.textContent = '新增留言';
-					const newmsgtext = document.createElement('input');
-					newmsgtext.type = 'text';
-					newmsgtext.size = '40';
-					newmsgtext.id = 'message-content';
-					const newmsgbtn = document.createElement('input');
-					newmsgbtn.type = 'button';
-					newmsgbtn.value = '儲存';
-					newmsgbtn.id = 'message-btn';
-					newmsgbtn.addEventListener('click', save);
-					messagepanel.appendChild(newmsgp);
-					messagepanel.appendChild(newmsgtext);
-					messagepanel.appendChild(newmsgbtn);
-					messagepanel.appendChild(newmsgbtn);
+			dBtnEdit.addEventListener('click',
+				() => {
+					setEditMessageInfo(messageInfo);
+				});
+
+			const dBtnDelete = document.createElement('button');
+			dBtnDelete.textContent = '刪除';
+			dBtnDelete.addEventListener('click',
+				() => {
+					deleteMessage(messageInfo.id);
 				})
-				const editsavebutton = document.createElement('input');
-				editsavebutton.type = 'button';
-				editsavebutton.value = '儲存';
-				editsavebutton.id = 'message-btn';
-				editsavebutton.addEventListener('click',() =>{
-					let editmessageList=messageList.filter((n) => n.Editid=== dBtnEdit.id);
-					editmessageList[0].Message=editmsgtext.value;
-					removedom();
-					while (messagepanel.firstChild) {
-						messagepanel.removeChild(messagepanel.firstChild);
-					}
-					const newmsgp = document.createElement('p');
-					newmsgp.textContent = '新增留言';
-					const newmsgtext = document.createElement('input');
-					newmsgtext.type = 'text';
-					newmsgtext.size = '40';
-					newmsgtext.id = 'message-content';
-					const newmsgbtn = document.createElement('input');
-					newmsgbtn.type = 'button';
-					newmsgbtn.value = '儲存';
-					newmsgbtn.id = 'message-btn';
-					newmsgbtn.addEventListener('click', save);
-					messagepanel.appendChild(newmsgp);
-					messagepanel.appendChild(newmsgtext);
-					messagepanel.appendChild(newmsgbtn);
-				})
-				messagepanel.appendChild(editmsgp);
-				messagepanel.appendChild(editmsgtext);
-				messagepanel.appendChild(editcancelbutton);
-				messagepanel.appendChild(editsavebutton);
-				/*test = messageList.filter(tests => tests.no == dBtnEdit.id.substr(4))
-				removedom(messageListContainer);*/
-			})
-			dBtnDelete.addEventListener('click', () => {
-				messageList = messageList.filter((n) => n.Deleteid !== dBtnDelete.id);
-				removedom();
-			})
-			const content = document.createElement('a');
-			content.textContent = item.Message;
-			oUl.appendChild(content);
-			oUl.appendChild(dBtnDelete);
-			oUl.appendChild(dBtnEdit);
-		})
+
+			const div = document.createElement('div');
+			div.appendChild(content);
+			div.appendChild(dBtnEdit);
+			div.appendChild(dBtnDelete);
+
+			messageListContainer.appendChild(div);
+		});
 	}
-	function init(){
+	function init() {
 		render();
 	}
 	init();
 
-	function addMessage(title='',value=''){
-		messageList=[
-			...messageList,{
-				id:messageDetailIndex,
-				title,
-				content:value,
+	function addMessage(value = '') {
+		messageList = [
+			...messageList, {
+				id: messageDetailIndex,
+				content: value,
 			},
 		];
+		messageDetailIndex = messageDetailIndex + 1;
 		render();
 	}
-	function editMessage(id,title='',value='')
-	{
-
-	}
-	function setEditMessageInfo(messageInfo){
-		editMessageInfo=messageInfo;
-	}
-	function setMessage(title='',value=''){
-
-	}
-	function deleteMessage(id){
-		messageList=messageList.filter((messageInfo) => messageInfo.id!==id);
+	//還沒看懂
+	function editMessage(id, value = '') {
+		messageList = messageList.map((messageInfo) => {
+			if (messageInfo.id === id) {
+				return {
+					id: id,
+					content: value,
+				};
+			}
+			return messageInfo;
+		});
 		render();
 	}
-	function save() {	
+	function setEditMessageInfo(messageInfo) {
+		editMessageInfo = messageInfo;
+		messageCancelEditBtn.style.display = 'table-row';
+
+		messageContentInput.value = editMessageInfo.content;
+	}
+	function setMessage(value = '') {
+		if (editMessageInfo) {
+			editMessage(editMessageInfo.id, value);
+		} else {
+			addMessage(value);
+		}
+	}
+	function deleteMessage(id) {
+		messageList = messageList.filter((messageInfo) => messageInfo.id !== id);
+		render();
+	}
+
+	messageBtn.addEventListener('click', () => {
+		const contentValue = messageContentInput.value;
+
+		setMessage(contentValue);
+	})
+
+	messageCancelEditBtn.addEventListener('click', () => {
+		render();
+	})
+	function save() {
 		sVal = messageContentInput.value;
 		warnmessage = document.querySelector('#warningmessage');
 		if (sVal == '') {
@@ -177,37 +142,18 @@
 		messageDetailIndex++;
 		messageContentInput.value = '';
 	}
-	function arraychane() {
-		const messageInfo = {
-			no: messageDetailIndex,
-			name: 'test',
-			Message: sVal,
-			MessageId: 'Message' + messageDetailIndex,
-			Deleteid: 'Delete' + messageDetailIndex,
-			Editid: 'Edit' + messageDetailIndex
-		}
-		messageList.push(messageInfo);
-	}
-	function domchange() {
-		messageList.forEach((item) => {
-			
-		});
-	}
-
 	function searchmessage() {
 		const searchtext = document.querySelector('#searchtext');
-		const searchmessageList=messageList.filter((n) => n.Message=searchtext.textContent);
-		if(searchmessageList.length>0)
-		{
+		const searchmessageList = messageList.filter((n) => n.Message = searchtext.textContent);
+		if (searchmessageList.length > 0) {
 			while (messageListContainer.firstChild) {
-			messageListContainer.removeChild(messageListContainer.firstChild);
-			searchmessageList.forEach((item) => {
-				
-			})
-		}
+				messageListContainer.removeChild(messageListContainer.firstChild);
+				searchmessageList.forEach((item) => {
+
+				})
+			}
 		}
 	}
-	document.querySelector('#message-btn').addEventListener('click', save);
 	document.querySelector('#searchbtn').addEventListener('click', searchmessage);
 	debugger;		
 </script>

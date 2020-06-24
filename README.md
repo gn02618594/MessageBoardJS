@@ -1,6 +1,9 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/24 23:00
+重構完成
+
 6/23 11:00
 重構中
 
