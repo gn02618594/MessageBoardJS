@@ -144,15 +144,38 @@
 	}
 	function searchmessage() {
 		const searchtext = document.querySelector('#searchtext');
-		const searchmessageList = messageList.filter((n) => n.Message = searchtext.textContent);
+		const searchmessageList = messageList.filter((n) => n.content == searchtext.value);
 		if (searchmessageList.length > 0) {
-			while (messageListContainer.firstChild) {
-				messageListContainer.removeChild(messageListContainer.firstChild);
-				searchmessageList.forEach((item) => {
-
-				})
-			}
+			clear();
+			//searchrender(searchmessageList);
 		}
+	}
+	function searchrender(searchlist){
+		searchlist.forEach((messageInfo) => {
+			const content = document.createElement('span');
+			content.textContent = messageInfo.content;
+
+			const dBtnEdit = document.createElement('button');
+			dBtnEdit.textContent = '編輯';
+			dBtnEdit.addEventListener('click',
+				() => {
+					setEditMessageInfo(messageInfo);
+				});
+
+			const dBtnDelete = document.createElement('button');
+			dBtnDelete.textContent = '刪除';
+			dBtnDelete.addEventListener('click',
+				() => {
+					deleteMessage(messageInfo.id);
+				})
+
+			const div = document.createElement('div');
+			div.appendChild(content);
+			div.appendChild(dBtnEdit);
+			div.appendChild(dBtnDelete);
+
+			messageListContainer.appendChild(div);
+		});
 	}
 	document.querySelector('#searchbtn').addEventListener('click', searchmessage);
 	debugger;		

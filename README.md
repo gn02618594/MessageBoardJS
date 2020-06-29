@@ -1,6 +1,14 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/29 22:00
+嘗試做搜尋
+想法是去顯示留言的陣列取得符合的內容
+然後放到另一個陣列
+然後在顯示出來
+卡在render我試要寫一個新的出來，還是用原本的只是代參數
+但嘗試起來 render裡面放不了參數
+
 6/24 23:00
 重構完成
 
