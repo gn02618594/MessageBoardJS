@@ -1,6 +1,9 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+6/30 22:20
+用indexOf去做搜尋，並多一個取消搜尋得按鈕，可以變回顯示所有的留言
+
 6/29 22:00
 嘗試做搜尋
 想法是去顯示留言的陣列取得符合的內容

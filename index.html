@@ -12,6 +12,7 @@
 		<label for="search">搜尋留言:</label>
 		<input type="text" id="searchtext">
 		<input type="button" id="searchbtn" value="搜尋">
+		<input type="button" id="cancel-searchbtn" value="取消搜尋">
 	</div>
 	<h1>留言板</h1>
 	<div id="newmessagepanel">
@@ -34,12 +35,14 @@
 	const messageBtn = document.querySelector('#message-btn');
 	const messageListContainer = document.querySelector('#message-list-container');
 	const messageCancelEditBtn = document.querySelector('#message-cancel-edit-btn');
+	const searchtext = document.querySelector('#searchtext');
 	let warnmessage = null;
 
 	function clear() {
 		editMessageInfo = null;
 		messageCancelEditBtn.style.display = 'none';
 		messageContentInput.value = '';
+		searchtext.value="";
 
 		while (messageListContainer.firstChild) {
 			messageListContainer.removeChild(messageListContainer.firstChild);
@@ -143,11 +146,10 @@
 		messageContentInput.value = '';
 	}
 	function searchmessage() {
-		const searchtext = document.querySelector('#searchtext');
-		const searchmessageList = messageList.filter((n) => n.content == searchtext.value);
+		const searchmessageList = messageList.filter((n) => n.content.indexOf(searchtext.value) != -1);
 		if (searchmessageList.length > 0) {
 			clear();
-			//searchrender(searchmessageList);
+			searchrender(searchmessageList);
 		}
 	}
 	function searchrender(searchlist){
@@ -177,7 +179,9 @@
 			messageListContainer.appendChild(div);
 		});
 	}
+
 	document.querySelector('#searchbtn').addEventListener('click', searchmessage);
+	document.querySelector('#cancel-searchbtn').addEventListener('click', render);
 	debugger;		
 </script>
 
