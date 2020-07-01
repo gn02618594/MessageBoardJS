@@ -1,6 +1,9 @@
 # MessageBoardJS
 Use JS to make the MessageBoard
 
+7/01 21:40
+被督，改程式架構，程式命名
+
 6/30 22:20
 用indexOf去做搜尋，並多一個取消搜尋得按鈕，可以變回顯示所有的留言
 
